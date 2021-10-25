@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_PROFILE: udagram-wano-dev
+  AWS_REGION: us-east-2
+  AWS_BUCKET: udagram-927852435336-dev
+  POSTGRES_HOST: udagramdev.c3urdx5uy9nt.us-east-2.rds.amazonaws.com
+  POSTGRES_DB: udagramdev
+  
+  JWT_SECRET: YOUR_JWT_SECRET
+  URL: http://localhost:8100
+metadata:
+  name: env-config
