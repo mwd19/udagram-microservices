@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: wano19/udagram-frontend:v7
+          image: wano19/udagram-frontend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
