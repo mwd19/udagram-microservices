@@ -6,8 +6,7 @@ data:
   AWS_BUCKET: udagram-927852435336-dev
   POSTGRES_HOST: udagramdev.c3urdx5uy9nt.us-east-2.rds.amazonaws.com
   POSTGRES_DB: udagramdev
-  
-  JWT_SECRET: YOUR_JWT_SECRET
+  JWT_SECRET: hello
   URL: http://localhost:8100
 metadata:
   name: env-config
