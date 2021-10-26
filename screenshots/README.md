@@ -23,6 +23,18 @@ reverseproxy-5c6895fdcd-xp4vr   1/1     Running   0          25m
 ```
 * To verify Kubernetes services are properly set up
 ```bash
+➜  udagram-microservices git:(master) ✗ kubectl get services
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+backend-feed         ClusterIP      10.100.142.42    <none>                                                                    8080/TCP         81m
+backend-user         ClusterIP      10.100.20.141    <none>                                                                    8080/TCP         81m
+frontend             ClusterIP      10.100.223.205   <none>                                                                    8100/TCP         81m
+kubernetes           ClusterIP      10.100.0.1       <none>                                                                    443/TCP          137m
+publicfrontend       LoadBalancer   10.100.56.57     a820d5c89100e468ca6f914bc3adb4f2-1783643409.us-east-2.elb.amazonaws.com   80:31378/TCP     75m
+publicreverseproxy   LoadBalancer   10.100.224.234   a673ba17db808413da74eb11f1f3cf19-1118841903.us-east-2.elb.amazonaws.com   8080:30638/TCP   74m
+reverseproxy         LoadBalancer   10.100.44.76     ae287ec932a794207b22065a434b742d-1644228110.us-east-2.elb.amazonaws.com   8080:31337/TCP   81m
+```
+
+```bash
 ➜  udagram-microservices git:(master) ✗ kubectl describe services
 Name:              backend-feed
 Namespace:         default
