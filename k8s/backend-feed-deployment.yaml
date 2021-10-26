@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-feed
+  name: backend-feed
   labels:
-    service: udagram-api-feed
+    service: backend-feed
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      service: udagram-api-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        service: udagram-api-feed
+        service: backend-feed
     spec:
       containers:
-        - name: udagram-api-feed
+        - name: backend-feed
           image: wano19/udagram-api-feed:v1
           imagePullPolicy: Always
           resources:
             requests:
-              memory: '128Mi'
+              memory: '1024Mi'
               cpu: '250m'
             limits:
-              memory: '1024Mi'
+              memory: '2048Mi'
               cpu: '500m'
           env:
             - name: URL
@@ -71,6 +71,16 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: POSTGRES_PASSWORD
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: AWS_SECRET_ACCESS_KEY
           volumeMounts:
             - name: aws-secret
               mountPath: "/root/.aws/"
