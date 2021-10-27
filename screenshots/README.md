@@ -161,26 +161,34 @@ Events:
 ```
 * To verify that you have horizontal scaling set against CPU usage
 ```bash
+➜  udagram-microservices git:(master) ✗ kubectl get hpa
+NAME           REFERENCE                 TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+backend-feed   Deployment/backend-feed   0%/70%    4         6         4          51s
+```
+
+```bash
 ➜  udagram-microservices git:(master) ✗ kubectl describe hpa
 Name:                                                  backend-feed
 Namespace:                                             default
 Labels:                                                <none>
 Annotations:                                           <none>
-CreationTimestamp:                                     Tue, 26 Oct 2021 22:47:34 +0100
+CreationTimestamp:                                     Wed, 27 Oct 2021 22:02:16 +0100
 Reference:                                             Deployment/backend-feed
 Metrics:                                               ( current / target )
-  resource cpu on pods  (as a percentage of request):  <unknown> / 70%
+  resource cpu on pods  (as a percentage of request):  47% (119m) / 70%
 Min replicas:                                          4
 Max replicas:                                          6
-Deployment pods:                                       3 current / 4 desired
+Deployment pods:                                       4 current / 4 desired
 Conditions:
-  Type         Status  Reason            Message
-  ----         ------  ------            -------
-  AbleToScale  True    SucceededRescale  the HPA controller was able to update the target scale to 4
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
 Events:
   Type    Reason             Age   From                       Message
   ----    ------             ----  ----                       -------
-  Normal  SuccessfulRescale  3s    horizontal-pod-autoscaler  New size: 4; reason: Current number of replicas below Spec.MinReplicas
+  Normal  SuccessfulRescale  53s   horizontal-pod-autoscaler  New size: 4; reason: Current number of replicas below Spec.MinReplicas
 ```
 * To verify that you have set up logging with a backend application
 ```bash
