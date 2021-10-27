@@ -5,7 +5,7 @@ metadata:
   labels:
     service: backend-feed
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       service: backend-feed
